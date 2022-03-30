@@ -40,22 +40,46 @@ const Recipe = () => {
                     Ingredients
                 </Button>
 
-                <h3>Summary</h3>
-                <Summary
-                    dangerouslySetInnerHTML={{ __html: recipe.summary }}
-                ></Summary>
+                {recipe.summary ? (
+                    <>
+                        <h3>Summary</h3>
+                        <Summary
+                            dangerouslySetInnerHTML={{
+                                __html: recipe.summary,
+                            }}
+                        ></Summary>
+                    </>
+                ) : (
+                    ''
+                )}
 
-                <h3>Instructions</h3>
-                <Instructions
-                    dangerouslySetInnerHTML={{ __html: recipe.instructions }}
-                ></Instructions>
+                {recipe.instructions ? (
+                    <>
+                        <h3>Instructions</h3>
+                        <Instructions
+                            dangerouslySetInnerHTML={{
+                                __html: recipe.instructions,
+                            }}
+                        ></Instructions>
+                    </>
+                ) : (
+                    ''
+                )}
 
-                <h3>Ingredients</h3>
-                <Ingredients>
-                    {recipe.extendedIngredients.map((item) => (
-                        <li>{item.original}</li>
-                    ))}
-                </Ingredients>
+                {recipe.extendedIngredients ? (
+                    <>
+                        <h3>Ingredients</h3>
+                        <Ingredients>
+                            {recipe.extendedIngredients.map((item) => (
+                                <li key={item.id + item.unit}>
+                                    {item.original}
+                                </li>
+                            ))}
+                        </Ingredients>
+                    </>
+                ) : (
+                    ''
+                )}
             </Info>
         </Wrapper>
     )
@@ -118,9 +142,10 @@ const Instructions = styled.div`
 const Ingredients = styled.ul`
     margin: 2rem 0;
     line-height: 2rem;
-    padding: 0 0 0 1rem;
+    padding: 0 0 0 1.25rem;
 
     li {
+        font-size: 1rem;
         line-height: 2rem;
     }
 `
