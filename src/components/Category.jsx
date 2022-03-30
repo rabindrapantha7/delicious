@@ -65,7 +65,15 @@ const CategoryLink = styled(NavLink)`
     }
 
     &.active {
-        background: linear-gradient(35deg, #494949, #818181);
+        background: linear-gradient(to right, #f27121, #e94057);
+
+        svg {
+            color: white;
+        }
+
+        h4 {
+            color: white;
+        }
     }
 `
 

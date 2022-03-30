@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react'
-
 import { Splide, SplideSlide } from '@splidejs/react-splide'
 import '@splidejs/splide/dist/css/splide.min.css'
-
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const Veggie = () => {
@@ -43,7 +42,9 @@ const Veggie = () => {
                     {veggie.map((recipe, index) => (
                         <SplideSlide key={recipe.id + index}>
                             <Card>
-                                <p>{recipe.title}</p>
+                                <Link to={'/recipe/' + recipe.id}>
+                                    <p>{recipe.title}</p>
+                                </Link>
                                 <img src={recipe.image} alt={recipe.title} />
                                 <Gradient />
                             </Card>
@@ -84,6 +85,15 @@ const Card = styled.div`
         text-align: center;
         font-weight: 400;
         font-size: 1.575rem;
+    }
+
+    a {
+        z-index: 10;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
     }
 `
 
