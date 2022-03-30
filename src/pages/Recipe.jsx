@@ -22,10 +22,10 @@ const Recipe = () => {
 
     return (
         <Wrapper>
-            <div>
+            <Intro>
                 <h2>{recipe.title}</h2>
                 <img src={recipe.image} alt={recipe.title} />
-            </div>
+            </Intro>
             <Info>
                 <Button
                     className={'instructions' === activeTab ? 'active' : ''}
@@ -40,21 +40,19 @@ const Recipe = () => {
                     Ingredients
                 </Button>
 
-                {recipe.summary ? (
+                {recipe.instructions && 'instructions' === activeTab && (
                     <>
-                        <h3>Summary</h3>
-                        <Summary
-                            dangerouslySetInnerHTML={{
-                                __html: recipe.summary,
-                            }}
-                        ></Summary>
-                    </>
-                ) : (
-                    ''
-                )}
+                        {recipe.summary && (
+                            <>
+                                <h3>Summary</h3>
+                                <Summary
+                                    dangerouslySetInnerHTML={{
+                                        __html: recipe.summary,
+                                    }}
+                                ></Summary>
+                            </>
+                        )}
 
-                {recipe.instructions ? (
-                    <>
                         <h3>Instructions</h3>
                         <Instructions
                             dangerouslySetInnerHTML={{
@@ -62,12 +60,21 @@ const Recipe = () => {
                             }}
                         ></Instructions>
                     </>
-                ) : (
-                    ''
                 )}
 
-                {recipe.extendedIngredients ? (
+                {recipe.extendedIngredients && 'ingredients' === activeTab && (
                     <>
+                        {recipe.summary && (
+                            <>
+                                <h3>Summary</h3>
+                                <Summary
+                                    dangerouslySetInnerHTML={{
+                                        __html: recipe.summary,
+                                    }}
+                                ></Summary>
+                            </>
+                        )}
+
                         <h3>Ingredients</h3>
                         <Ingredients>
                             {recipe.extendedIngredients.map((item) => (
@@ -77,8 +84,6 @@ const Recipe = () => {
                             ))}
                         </Ingredients>
                     </>
-                ) : (
-                    ''
                 )}
             </Info>
         </Wrapper>
@@ -117,6 +122,10 @@ const Button = styled.button`
     margin-right: 2rem;
     font-weight: 600;
     cursor: pointer;
+`
+
+const Intro = styled.div`
+    max-width: 550px;
 `
 
 const Info = styled.div`
