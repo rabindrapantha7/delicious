@@ -6,10 +6,10 @@
 
 body {
     margin: 0% 10%;
-    /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
         'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
-        'Helvetica Neue', sans-serif; */
-    font-family: 'Futura LT Pro', sans-serif;
+        'Helvetica Neue', sans-serif;
+    /* font-family: 'Futura LT Pro', sans-serif; */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
