@@ -31,6 +31,7 @@ const Logo = styled(Link)`
     flex-direction: column;
     align-items: center;
     font-family: 'Lobster', cursive;
+    font-size: 2rem;
 `
 
 const Nav = styled.div`
