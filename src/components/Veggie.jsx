@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Splide, SplideSlide } from '@splidejs/react-splide'
-import '@splidejs/react-splide/css';
+import '@splidejs/react-splide/css'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
@@ -9,9 +9,16 @@ const Veggie = () => {
 
     const getVeggie = async () => {
         const veggie = localStorage.getItem('veggie')
-        if (veggie !== 'undefined' && veggie !== null) {
-            setVeggie(JSON.parse(veggie))
-            return
+        if (veggie) {
+            try {
+                const parsedVeggie = JSON.parse(veggie)
+                if (Array.isArray(parsedVeggie) && parsedVeggie.length > 0) {
+                    setVeggie(parsedVeggie)
+                    return
+                }
+            } catch (error) {
+                console.error('Error parsing veggie from localStorage', error)
+            }
         }
 
         const api = await fetch(

@@ -1,17 +1,17 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
-import { FaSearch } from 'react-icons/fa'
-import { useNavigate } from 'react-router-dom'
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { FaSearch } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 const Search = () => {
-    const [keywords, setKeywords] = useState('')
+    const [keywords, setKeywords] = useState('');
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const submitHandler = (e) => {
-        e.preventDefault()
-        if (keywords) navigate('/search/' + keywords)
-    }
+        e.preventDefault();
+        if (keywords) navigate('/search/' + keywords);
+    };
 
     return (
         <div>
@@ -26,8 +26,8 @@ const Search = () => {
                 </div>
             </Form>
         </div>
-    )
-}
+    );
+};
 
 const Form = styled.form`
     margin: 0 20rem;
@@ -54,6 +54,6 @@ const Form = styled.form`
         transform: translate(100%, -50%);
         color: white;
     }
-`
+`;
 
-export default Search
+export default Search;

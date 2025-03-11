@@ -1,24 +1,24 @@
-import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
-import { useParams } from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import { useParams } from 'react-router-dom';
 
 const Recipe = () => {
-    const params = useParams()
-    const [recipe, setRecipe] = useState({})
-    const [activeTab, setActiveTab] = useState('instructions')
+    const params = useParams();
+    const [recipe, setRecipe] = useState({});
+    const [activeTab, setActiveTab] = useState('instructions');
 
     const getRecipe = async (name) => {
         const api = await fetch(
             `https://api.spoonacular.com/recipes/${name}/information/?apiKey=${process.env.REACT_APP_FOOD_API_KEY}`
-        )
-        const data = await api.json()
-        setRecipe(data)
-        console.log(data)
-    }
+        );
+        const data = await api.json();
+        setRecipe(data);
+        console.log(data);
+    };
 
     useEffect(() => {
-        if (params.name) getRecipe(params.name)
-    }, [params.name])
+        if (params.name) getRecipe(params.name);
+    }, [params.name]);
 
     return (
         <Wrapper>
@@ -87,8 +87,8 @@ const Recipe = () => {
                 )}
             </Info>
         </Wrapper>
-    )
-}
+    );
+};
 
 const Wrapper = styled.div`
     margin-top: 10rem;
@@ -112,7 +112,7 @@ const Wrapper = styled.div`
         font-size: 1.2rem;
         line-height: 1.5rem;
     }
-`
+`;
 
 const Button = styled.button`
     padding: 1rem 2rem;
@@ -122,20 +122,20 @@ const Button = styled.button`
     margin-right: 2rem;
     font-weight: 600;
     cursor: pointer;
-`
+`;
 
 const Intro = styled.div`
     max-width: 550px;
-`
+`;
 
 const Info = styled.div`
     margin-left: 10rem;
-`
+`;
 
 const Summary = styled.div`
     margin: 2rem 0;
     line-height: 1.785rem;
-`
+`;
 
 const Instructions = styled.div`
     margin: 2rem 0;
@@ -146,7 +146,7 @@ const Instructions = styled.div`
         font-size: 1rem;
         line-height: 2rem;
     }
-`
+`;
 
 const Ingredients = styled.ul`
     margin: 2rem 0;
@@ -157,6 +157,6 @@ const Ingredients = styled.ul`
         font-size: 1rem;
         line-height: 2rem;
     }
-`
+`;
 
-export default Recipe
+export default Recipe;

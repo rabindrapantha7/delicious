@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 
-import { FaPizzaSlice, FaHamburger } from 'react-icons/fa'
-import { GiNoodles, GiChopsticks } from 'react-icons/gi'
-import { NavLink } from 'react-router-dom'
+import { FaPizzaSlice, FaHamburger } from 'react-icons/fa';
+import { GiNoodles, GiChopsticks } from 'react-icons/gi';
+import { NavLink } from 'react-router-dom';
 
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const Category = () => {
     return (
@@ -26,14 +26,14 @@ const Category = () => {
                 <h4>Japanese</h4>
             </CategoryLink>
         </List>
-    )
-}
+    );
+};
 
 const List = styled.div`
     display: flex;
     justify-content: center;
     margin: 2rem 0;
-`
+`;
 
 const CategoryLink = styled(NavLink)`
     display: flex;
@@ -75,6 +75,6 @@ const CategoryLink = styled(NavLink)`
             color: white;
         }
     }
-`
+`;
 
-export default Category
+export default Category;

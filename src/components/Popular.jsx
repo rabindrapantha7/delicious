@@ -1,32 +1,42 @@
-import { useEffect, useState } from 'react'
-import { Splide, SplideSlide } from '@splidejs/react-splide'
+import { useEffect, useState } from 'react';
+import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
-import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const Popular = () => {
-    const [popular, setPopular] = useState([])
+    const [popular, setPopular] = useState([]);
 
     const getPopular = async () => {
-        const popular = localStorage.getItem('popular')
-        
-        if (popular !== 'undefined' && popular !== null) {
-            setPopular(JSON.parse(popular))
-            return
+        const popular = localStorage.getItem('popular');
+
+        if (popular) {
+            try {
+                const parsedPopular = JSON.parse(popular);
+                if (Array.isArray(parsedPopular) && parsedPopular.length > 0) {
+                    setPopular(parsedPopular);
+                    return;
+                }
+            } catch (error) {
+                console.error(
+                    'Failed to parse popular recipes from localStorage',
+                    error
+                );
+            }
         }
 
         const api = await fetch(
             `https://api.spoonacular.com/recipes/random?number=9&apiKey=${process.env.REACT_APP_FOOD_API_KEY}`
-        )
-        const data = await api.json()
-        
-        localStorage.setItem('popular', JSON.stringify(data.recipes))
-        setPopular(data.recipes)
-    }
+        );
+        const data = await api.json();
+
+        localStorage.setItem('popular', JSON.stringify(data.recipes));
+        setPopular(data.recipes);
+    };
 
     useEffect(() => {
-        getPopular()
-    }, [])
+        getPopular();
+    }, []);
 
     return (
         <div>
@@ -47,7 +57,12 @@ const Popular = () => {
                                 <Link to={'/recipe/' + recipe.id}>
                                     <p>{recipe.title}</p>
                                 </Link>
-                                <img src={recipe.image} alt={recipe.title} />
+                                {recipe.image && (
+                                    <img
+                                        src={recipe.image}
+                                        alt={recipe.title}
+                                    />
+                                )}
                                 <Gradient />
                             </Card>
                         </SplideSlide>
@@ -55,12 +70,12 @@ const Popular = () => {
                 </Splide>
             </Wrapper>
         </div>
-    )
-}
+    );
+};
 
 const Wrapper = styled.div`
     margin: 4rem 0;
-`
+`;
 
 const Card = styled.div`
     min-height: 25rem;
@@ -97,7 +112,7 @@ const Card = styled.div`
         justify-content: center;
         text-decoration: none;
     }
-`
+`;
 
 const Gradient = styled.div`
     z-index: 3;
@@ -105,6 +120,6 @@ const Gradient = styled.div`
     width: 100%;
     height: 100%;
     background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
-`
+`;
 
-export default Popular
+export default Popular;
