@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Splide, SplideSlide } from '@splidejs/react-splide'
-import '@splidejs/splide/dist/css/splide.min.css'
+import '@splidejs/react-splide/css';
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
@@ -9,7 +9,8 @@ const Popular = () => {
 
     const getPopular = async () => {
         const popular = localStorage.getItem('popular')
-        if (popular) {
+        
+        if (popular !== 'undefined' && popular !== null) {
             setPopular(JSON.parse(popular))
             return
         }
@@ -18,6 +19,7 @@ const Popular = () => {
             `https://api.spoonacular.com/recipes/random?number=9&apiKey=${process.env.REACT_APP_FOOD_API_KEY}`
         )
         const data = await api.json()
+        
         localStorage.setItem('popular', JSON.stringify(data.recipes))
         setPopular(data.recipes)
     }

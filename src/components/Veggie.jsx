@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Splide, SplideSlide } from '@splidejs/react-splide'
-import '@splidejs/splide/dist/css/splide.min.css'
+import '@splidejs/react-splide/css';
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
@@ -9,7 +9,7 @@ const Veggie = () => {
 
     const getVeggie = async () => {
         const veggie = localStorage.getItem('veggie')
-        if (veggie) {
+        if (veggie !== 'undefined' && veggie !== null) {
             setVeggie(JSON.parse(veggie))
             return
         }
